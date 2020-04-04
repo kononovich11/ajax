@@ -17,6 +17,21 @@ function getPosts(cb) {
 } 
 
 btn.addEventListener('click', e => {
-    getPosts(response => console.log(response));
+    getPosts(response => {
+        const fragment = document.createDocumentFragment();
+        response.forEach(post => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('cardBody');
+            const title = document.createElement('h5');
+            title.classList.add('card-title');
+            const article = document.createElement('p');
+            article.classList.add('card-article');
+            cardBody.appendChild(title);
+            cardBody.appendChild(article);
+            console.log(cardBody);
+        });
+    });
 });
 
