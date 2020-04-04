@@ -1,0 +1,8 @@
+.body-content {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.posts-container {
+    width: 50%;
+}
