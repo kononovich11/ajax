@@ -1,5 +1,5 @@
 const btn = document.querySelector('button');
-
+const container = document.querySelector('.container');
 
 function getPosts(cb) {
     const xhr = new XMLHttpRequest();
@@ -22,16 +22,25 @@ btn.addEventListener('click', e => {
         response.forEach(post => {
             const card = document.createElement('div');
             card.classList.add('card');
+
             const cardBody = document.createElement('div');
             cardBody.classList.add('cardBody');
+
             const title = document.createElement('h5');
             title.classList.add('card-title');
+            title.textContent = post.title;
+
             const article = document.createElement('p');
             article.classList.add('card-article');
+            article.textContent = post.body;
+
             cardBody.appendChild(title);
             cardBody.appendChild(article);
-            console.log(cardBody);
+            
+            card.appendChild(cardBody);
+            fragment.appendChild(card);
         });
+        container.appendChild(fragment);
     });
 });
 
