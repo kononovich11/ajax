@@ -1,3 +1,4 @@
+/*
 const btn = document.querySelector('button');
 const container = document.querySelector('.container');
 
@@ -43,4 +44,16 @@ btn.addEventListener('click', e => {
         container.appendChild(fragment);
     });
 });
+*/
 
+function getUsers() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
+    xhr.addEventListener('load', () => {
+        const responseArr = JSON.parse(xhr.responseText);
+        console.dir(responseArr);
+    });
+    xhr.send();
+}
+
+getUsers();
