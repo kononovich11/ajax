@@ -87,6 +87,7 @@ usersContextName.addEventListener('click', e => {
             }
         });
     });
+    infoUserHtml.innerHTML = '';
     fragment.appendChild(infoUserUl);
     infoUserHtml.appendChild(fragment);
     console.log(infoUserHtml);
