@@ -4,17 +4,17 @@ const container = document.querySelector('.container');
 function getPosts(cb) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
-    xhr.addEventListener('load',() => {
+    xhr.addEventListener('load', () => {
         const response = JSON.parse(xhr.responseText);
         cb(response);
     });
-    
+
     xhr.addEventListener('error', () => {
         console.log('error');
     });
-    
+
     xhr.send();
-} 
+}
 
 btn.addEventListener('click', e => {
     getPosts(response => {
@@ -36,7 +36,7 @@ btn.addEventListener('click', e => {
 
             cardBody.appendChild(title);
             cardBody.appendChild(article);
-            
+
             card.appendChild(cardBody);
             fragment.appendChild(card);
         });
@@ -46,6 +46,7 @@ btn.addEventListener('click', e => {
 
 const btnUsers = document.querySelector('.btn-users');
 const usersContextName = document.querySelector('.users-name');
+const infoUserHtml = document.querySelector('.info-User');
 
 function getUsers(callBack) {
     const xhr = new XMLHttpRequest();
@@ -71,7 +72,22 @@ btnUsers.addEventListener('click', e => {
     usersContextName.appendChild(fragment);
 });
 
-
-
-
-
+usersContextName.addEventListener('click', e => {
+    const fragment = document.createDocumentFragment();
+    let infoUserUl = document.createElement('ul');
+    getUsers(responseArr => {
+        responseArr.forEach(user => {
+            const {address: {street, suite, city}, company: {name}} = user; 
+            if (user.name == e.target.textContent) { 
+                for (let key in user) { 
+                    let infoUserLi = document.createElement('li');
+                    key == 'address'? infoUserLi.textContent = `${key}: ${street}, ${suite}, ${city}`:  key == 'company'? infoUserLi.textContent = `${key}: ${name}` : infoUserLi.textContent = `${key} : ${user[key]}`;
+                    infoUserUl.appendChild(infoUserLi); 
+               } 
+            }
+        });
+    });
+    fragment.appendChild(infoUserUl);
+    infoUserHtml.appendChild(fragment);
+    console.log(infoUserHtml);
+});
