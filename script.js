@@ -54,6 +54,10 @@ function getUsers(callBack) {
     xhr.addEventListener('load', () => {
         const responseArr = JSON.parse(xhr.responseText);
         callBack(responseArr);
+
+        xhr.addEventListener('error', () => {
+            console.log('error');
+        });
     });
     xhr.send();
 }
@@ -75,6 +79,7 @@ btnUsers.addEventListener('click', e => {
 usersContextName.addEventListener('click', e => {
     const fragment = document.createDocumentFragment();
     let infoUserUl = document.createElement('ul');
+
     getUsers(responseArr => {
         responseArr.forEach(user => {
             const {address: {street, suite, city}, company: {name}} = user; 

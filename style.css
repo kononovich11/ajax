@@ -1,8 +1,15 @@
 .body-content {
-    display: flex;
     justify-content: space-evenly;
 }
 
 .posts-container {
     width: 50%;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    border: 1px solid green;
 }
