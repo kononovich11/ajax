@@ -1,4 +1,5 @@
-const btn = document.querySelector('button');
+const btn = document.querySelector('.btn-get-posts');
+const btnSend = document.querySelector('.btn-send-post')  
 const container = document.querySelector('.container');
 
 function getPosts(cb) {
@@ -16,33 +17,68 @@ function getPosts(cb) {
     xhr.send();
 }
 
+function cretePost(body, cb) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://jsonplaceholder.typicode.com/posts');
+    xhr.addEventListener('load', () => {
+        const response = JSON.parse(xhr.responseText);
+        cb(response);
+    });
+
+    xhr.setRequestHeader( "Content-type", "application/json; charset=UTF-8");
+
+    xhr.addEventListener('error', () => {
+        console.log('error');
+    });
+
+    xhr.send(JSON.stringify(body));
+} 
+
+function cardTemplate(post) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('cardBody');
+
+    const title = document.createElement('h5');
+    title.classList.add('card-title');
+    title.textContent = post.title;
+
+    const article = document.createElement('p');
+    article.classList.add('card-article');
+    article.textContent = post.body;
+
+    cardBody.appendChild(title);
+    cardBody.appendChild(article);
+
+    card.appendChild(cardBody);
+    return card
+}
+
 btn.addEventListener('click', e => {
     getPosts(response => {
         const fragment = document.createDocumentFragment();
         response.forEach(post => {
-            const card = document.createElement('div');
-            card.classList.add('card');
-
-            const cardBody = document.createElement('div');
-            cardBody.classList.add('cardBody');
-
-            const title = document.createElement('h5');
-            title.classList.add('card-title');
-            title.textContent = post.title;
-
-            const article = document.createElement('p');
-            article.classList.add('card-article');
-            article.textContent = post.body;
-
-            cardBody.appendChild(title);
-            cardBody.appendChild(article);
-
-            card.appendChild(cardBody);
+            const card = cardTemplate(post);
             fragment.appendChild(card);
         });
         container.appendChild(fragment);
     });
 });
+
+btnSend.addEventListener('click', e => {
+    const newPost = {
+        title: 'foo',
+        body: 'bar',
+        userId: 1
+      };
+      cretePost(newPost, response => {
+        const card = cardTemplate(response);
+        container.insertAdjacentElement('afterbegin', card);
+      });
+});
+
 
 const btnUsers = document.querySelector('.btn-users');
 const usersContextName = document.querySelector('.users-name');
