@@ -4,36 +4,43 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
         <title>Document</title>
     </head>
     <body>
-        <div class="body-content d-flex ">
-            <div class="posts-container ">
-                <button class = "btn-primary btn-lg btn-get-posts">Get posts</button>
-                <button class = "btn-danger btn-lg btn-send-post">Send post</button>
+        <div class="body-content d-flex mt-4 ml-5">
+            <div class="posts-container w-50">
+                <button class="btn-primary btn-lg btn-get-posts">Get posts</button>
+                <button class="btn-danger btn-lg btn-send-post">Send post</button>
                 <div class="container "></div>
             </div>
             <div class="users-container ">
-                <button class= "btn-users btn-primary btn-lg">Get names of Users</button>
-                <div class="users-name "></div>
-                <div class="info-User "></div>
-                    <form class=" d-flex flex-column">
-                        <label for="fName">Name:</label>
-                        <input type="text" id="fName">
 
-                        <label for="email">Email:</label>
-                        <input type="text" id="email">
+                <div class="users-name">
+                    <h3 class="text-success">List of users from server:</h3>
+                </div>
+                <div class="info-User"></div>
+                <form class=" d-flex flex-column" action="#">
+                    <h3 class="text-primary mt-3">Add new user:</h3>
 
-                        <label for="uName">Username:</label>
-                        <input type="text" id="uName">
+                    <label for="fName">Name:</label>
+                    <input type="text" id="fName" placeholder="John" class="mb-3">
 
-                        <label for="phone">Phone:</label>
-                        <input type="text" id="phone">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" placeholder="username@beststartupever.com" id="email" class="mb-3">
 
-                        <label for="site">Website:</label>
-                        <input type="text" id="site">
-                    </form>
+                    <label for="uName">Username:</label>
+                    <input type="text" id="uName" placeholder="John_nickmame15" class="mb-3">
+
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" name="usrtel" id="phone" placeholder="+375297853064" class="mb-3">
+
+                    <label for="site">Website:</label>
+                    <input type="text" id="site" placeholder="work_page.com" class="mb-3 ">
+
+
+                    <input type="submit" value="Send" id="submit" class="bg-primary rounded btn-lg border-0 text-white">
+                </form>
             </div>
         </div>
 
