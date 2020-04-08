@@ -66,7 +66,9 @@ usersContextName.addEventListener('click', e => {
                 for (let key in user) {
                     let infoUserLi = document.createElement('li');
                     infoUserLi.textContent = `${key}:${user[key]}`;
+                    infoUserLi.style.listStyleType = 'none';
                     infoUserUl.appendChild(infoUserLi);
+                    infoUserUl.style.border = '1px solid green';
                 }
             } else {
                 const {
